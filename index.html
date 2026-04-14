@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <!-- SEO & Metadados -->
+  <meta name="description" content="EL SHADAI - Produtos profissionais de limpeza automotiva e doméstica com entrega em União de Vila Nova. Peça pelo WhatsApp.">
+  <meta property="og:title" content="EL SHADAI · Limpeza Automotiva & Doméstica">
+  <meta property="og:description" content="Shampoos, acabamentos, acessórios e produtos domésticos de alta performance.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="theme-color" content="#e53935">
+  <title>EL SHADAI · Limpeza Automotiva & Doméstica</title>
+  <!-- Favicon (simples) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e53935' rx='20'/><text x='50' y='70' font-family='Arial Black' font-size='50' fill='white' text-anchor='middle'>ES</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* Mantido exatamente o mesmo CSS original (apenas ajuste no sticky top) */
+    :root {
+      --red: #e53935;
+      --red-dark: #b71c1c;
+      --red-deep: #7f0000;
+      --black: #0a0a0a;
+      --black-soft: #141414;
+      --surface: #f7f0f0;
+      --header-height: 66px; /* será atualizado via JS */
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--surface);
+      color: #111; line-height: 1.5;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+    .app-header {
+      background: var(--black);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 3px solid var(--red);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .header-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0.6rem 1rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 10px;
+    }
+    .logo-area { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .logo-mark {
+      width: 46px; height: 46px; border-radius: 11px;
+      border: 2px solid var(--red); flex-shrink: 0;
+      background: var(--red-deep);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 36px; height: 36px; }
+    .brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.3rem, 4vw, 1.9rem);
+      color: white; letter-spacing: 2px; line-height: 1;
+    }
+    .brand-tagline { font-size: 0.66rem; color: #ffb3b3; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .brand-contact { font-size: 0.66rem; color: #bbb; margin-top: 1px; }
+    .brand-contact i { color: var(--red); margin-right: 3px; }
+    .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .header-nav { display: flex; gap: 2px; }
+    .nav-link {
+      color: #ccc; font-weight: 600; font-size: 0.8rem;
+      padding: 6px 10px; border-radius: 6px; cursor: pointer;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: white; background: rgba(255,255,255,0.08); }
+    .cart-btn {
+      background: var(--red); color: white; border: none;
+      padding: 0.48rem 1rem; border-radius: 60px;
+      font-weight: 800; display: flex; align-items: center; gap: 7px;
+      cursor: pointer; font-size: 0.85rem;
+      box-shadow: 0 3px 10px rgba(229,57,53,0.4);
+      font-family: 'Barlow', sans-serif; white-space: nowrap;
+      transition: transform 0.15s;
+    }
+    .cart-btn:hover { transform: translateY(-1px); }
+    .cart-badge {
+      background: black; color: white;
+      border-radius: 30px; padding: 1px 8px;
+      font-size: 0.82rem; border: 1px solid rgba(255,255,255,0.3);
+    }
+    @media (max-width: 500px) {
+      .header-nav { display: none; }
+      .brand-contact { display: none; }
+      .cart-label { display: none; }
+    }
+    .hero {
+      background: linear-gradient(140deg, #0a0a0a 0%, #1a0000 60%, #0f0000 100%);
+      padding: clamp(1.8rem,5vw,3.5rem) 1.2rem clamp(1.5rem,4vw,3rem);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 40%, rgba(229,57,53,0.11) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-content { max-width: 640px; position: relative; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(229,57,53,0.14); border: 1px solid rgba(229,57,53,0.32);
+      color: #ff8a80; font-weight: 700; font-size: 0.72rem;
+      padding: 5px 13px; border-radius: 30px;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.9rem;
+    }
+    .hero-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--red); }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 8vw, 4.2rem);
+      color: white; line-height: 1; letter-spacing: 1px;
+    }
+    .hero-title span { color: var(--red); }
+    .hero-sub {
+      color: #aaa; font-size: clamp(0.88rem,2.5vw,1rem);
+      margin: 0.8rem 0 1.4rem; line-height: 1.65; font-weight: 500;
+    }
+    .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: white; border: none;
+      padding: 12px 22px; border-radius: 10px;
+      font-weight: 800; font-size: 0.92rem; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      box-shadow: 0 5px 16px rgba(229,57,53,0.42);
+      font-family: 'Barlow', sans-serif;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(229,57,53,0.52); }
+    .btn-outline {
+      background: transparent; color: white;
+      border: 2px solid rgba(255,255,255,0.22);
+      padding: 12px 22px; border-radius: 10px;
+      font-weight: 700; font-size: 0.92rem; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      font-family: 'Barlow', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.06); }
+    .hero-pills {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.8rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(229,57,53,0.18);
+      color: #ccc; font-size: 0.77rem; font-weight: 600;
+      padding: 6px 13px; border-radius: 30px;
+    }
+    .hero-pill-tag i { color: var(--red); font-size: 0.82rem; }
+    .benefits-bar {
+      background: var(--red-dark); padding: 0.6rem 1rem;
+      overflow-x: auto; white-space: nowrap;
+    }
+    .benefits-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; gap: 1.4rem; align-items: center; justify-content: center;
+    }
+    .benefit-item {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: white; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
+    }
+    .benefit-item i { color: #ffcdd2; }
+    .sticky-filter {
+      background: white; border-bottom: 2px solid #f0d0d0;
+      padding: 0.65rem 1rem;
+      position: sticky; top: var(--header-height); z-index: 50;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    .filter-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    }
+    .search-wrap {
+      flex: 1; min-width: 150px;
+      display: flex; align-items: center;
+      background: #f5f5f5; border: 2px solid #e0e0e0; border-radius: 60px;
+      padding: 0.15rem 0.15rem 0.15rem 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .search-wrap:focus-within { border-color: var(--red); }
+    .search-wrap i { color: #bbb; font-size: 0.88rem; }
+    .search-wrap input {
+      flex: 1; border: none; outline: none;
+      padding: 7px 7px; font-size: 0.88rem;
+      background: transparent; font-family: 'Barlow', sans-serif;
+    }
+    .btn-cls {
+      background: var(--black); color: white; border: none;
+      padding: 5px 12px; border-radius: 60px;
+      font-weight: 700; cursor: pointer; font-size: 0.78rem;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn-cls.hidden { display: none; }
+    .cat-pills {
+      display: flex; gap: 6px; overflow-x: auto;
+      scrollbar-width: none; padding-bottom: 1px;
+    }
+    .cat-pills::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      background: #f0f0f0; border: 2px solid #ddd; color: #444;
+      padding: 5px 14px; border-radius: 60px;
+      font-weight: 700; font-size: 0.8rem; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+      font-family: 'Barlow', sans-serif; transition: all 0.15s;
+    }
+    .cat-pill i { margin-right: 5px; }
+    .cat-pill.active { background: var(--black); color: white; border-color: var(--red); }
+    .main-layout {
+      max-width: 1400px; margin: 1.2rem auto;
+      padding: 0 1rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .products-col { flex: 2; min-width: 0; }
+    .cart-col {
+      flex: 0 0 340px; width: 340px;
+      position: sticky; top: calc(var(--header-height) + 62px);
+    }
+    .subcat-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 1.6rem 0 0.8rem;
+    }
+    .subcat-line { flex: 1; height: 2px; background: linear-gradient(to right, #e0b3b3, transparent); }
+    .subcat-badge {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem; background: var(--black); color: var(--red);
+      padding: 5px 16px; border-radius: 40px; letter-spacing: 1px;
+      text-transform: uppercase; border: 2px solid var(--red-dark);
+      white-space: nowrap;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 11px;
+    }
+    .product-card {
+      background: white; border-radius: 18px;
+      padding: 13px 11px 11px;
+      border: 2px solid #ecdada; border-top: 5px solid var(--black);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 7px 22px rgba(183,28,28,0.13); border-color: var(--red-dark); }
+    .product-img-wrap {
+      width: 100%; aspect-ratio: 1/1;
+      background: linear-gradient(145deg, #f5eeee, #ede0e0);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 9px; overflow: hidden;
+    }
+    .product-img-wrap svg { width: 72%; height: 72%; }
+    .product-name { font-weight: 800; font-size: 0.85rem; color: #111; line-height: 1.3; flex: 1; }
+    .product-volume {
+      display: inline-block; background: var(--black-soft); color: white;
+      font-size: 0.68rem; font-weight: 700; padding: 3px 9px; border-radius: 30px; margin: 6px 0;
+    }
+    .product-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem; color: var(--red-dark); line-height: 1; margin: 2px 0 8px;
+    }
+    .btn-add {
+      background: var(--black); color: white; border: none;
+      padding: 9px 6px; border-radius: 9px;
+      font-weight: 800; font-size: 0.8rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      border: 2px solid rgba(229,57,53,0.32);
+      box-shadow: 0 3px 0 #3a0000;
+      font-family: 'Barlow', sans-serif; text-transform: uppercase; letter-spacing: 0.4px;
+      transition: all 0.1s;
+    }
+    .btn-add i { color: var(--red); }
+    .btn-add:active { transform: translateY(2px); box-shadow: 0 1px 0 #3a0000; }
+    .btn-add.added { background: #1b5e20; border-color: #4caf50; }
+    .btn-add.added i { color: #a5d6a7; }
+    .no-products { padding: 3rem; text-align: center; color: #888; font-size: 0.95rem; }
+    .cart-panel {
+      background: white; border-radius: 20px;
+      border: 2px solid #e0b3b3;
+      box-shadow: 0 10px 32px rgba(183,28,28,0.12);
+      overflow: hidden;
+    }
+    .cart-top {
+      background: var(--black); padding: 0.9rem 1.1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-top h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; color: white; letter-spacing: 1px;
+    }
+    .cart-top h2 i { color: var(--red); margin-right: 7px; }
+    .btn-clear-cart {
+      background: rgba(255,255,255,0.07); color: #aaa;
+      border: 1px solid rgba(255,255,255,0.15); padding: 4px 11px;
+      border-radius: 20px; font-weight: 700; font-size: 0.75rem;
+      cursor: pointer; font-family: 'Barlow', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-clear-cart:hover { background: rgba(229,57,53,0.2); color: white; }
+    .cart-body { padding: 0.85rem 1rem; }
+    .cart-items-list {
+      max-height: 300px; overflow-y: auto;
+      scrollbar-width: thin; scrollbar-color: var(--red) #eee;
+    }
+    .cart-empty { text-align: center; padding: 2rem 1rem; color: #bbb; }
+    .cart-empty i { font-size: 2rem; color: #e0d0d0; display: block; margin-bottom: 7px; }
+    .cart-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 8px 0; border-bottom: 1px solid #f5e0e0;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .ci-info { flex: 1; min-width: 0; }
+    .ci-name { font-weight: 700; font-size: 0.82rem; color: #111; line-height: 1.3; }
+    .ci-vol { font-size: 0.7rem; color: #999; margin-top: 1px; }
+    .ci-controls { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+    .ci-btn {
+      width: 25px; height: 25px; border-radius: 7px;
+      background: #111; color: white; border: 1px solid var(--red-dark);
+      cursor: pointer; font-weight: 900; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .ci-btn:hover { background: var(--red-dark); }
+    .ci-qty { font-weight: 800; font-size: 0.88rem; min-width: 17px; text-align: center; }
+    .ci-del { background: none; border: none; color: #ddd; cursor: pointer; font-size: 0.85rem; padding: 3px; transition: color 0.15s; }
+    .ci-del:hover { color: var(--red); }
+    .ci-price { font-weight: 900; font-size: 0.88rem; color: var(--red-dark); white-space: nowrap; padding-top: 2px; }
+    .cart-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 11px; padding-top: 11px;
+      border-top: 3px dashed #f0c8c8;
+    }
+    .cart-total-label { font-weight: 800; font-size: 0.92rem; }
+    .cart-total-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--red-dark); }
+    .client-inputs { margin: 11px 0 7px; display: flex; flex-direction: column; gap: 6px; }
+    .client-inputs input {
+      width: 100%; padding: 10px 13px;
+      border: 2px solid #e0d0d0; border-radius: 10px;
+      font-size: 0.9rem; font-family: 'Barlow', sans-serif; outline: none;
+      transition: border-color 0.2s;
+    }
+    .client-inputs input:focus { border-color: var(--red); }
+    .btn-whatsapp {
+      background: #111; color: white; border: none;
+      width: 100%; padding: 13px;
+      border-radius: 11px; font-weight: 900; font-size: 0.97rem;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; gap: 9px;
+      border: 2px solid rgba(229,57,53,0.4);
+      box-shadow: 0 4px 0 #3a0000;
+      font-family: 'Barlow', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+      transition: all 0.1s;
+    }
+    .btn-whatsapp i { font-size: 1.3rem; color: #25d366; }
+    .btn-whatsapp:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a0000; }
+    .cart-note { text-align: center; font-size: 0.7rem; color: #aaa; margin-top: 7px; }
+    .cart-note i { color: var(--red); }
+    .about-section {
+      background: var(--black); padding: clamp(2rem,5vw,3.5rem) 1.2rem;
+      margin-top: 2rem;
+    }
+    .about-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2.5rem; align-items: start;
+    }
+    .about-tag {
+      display: inline-block;
+      background: rgba(229,57,53,0.14); color: var(--red);
+      border: 1px solid rgba(229,57,53,0.28);
+      padding: 4px 12px; border-radius: 30px;
+      font-weight: 700; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 0.8rem;
+    }
+    .about-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.7rem,4vw,2.6rem);
+      color: white; line-height: 1; letter-spacing: 1px; margin-bottom: 0.9rem;
+    }
+    .about-title span { color: var(--red); }
+    .about-text { color: #999; font-size: 0.9rem; line-height: 1.7; font-weight: 500; }
+    .about-feats { display: flex; flex-direction: column; gap: 11px; margin-top: 1.2rem; }
+    .about-feat { display: flex; gap: 11px; align-items: flex-start; }
+    .feat-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(229,57,53,0.11); border: 1px solid rgba(229,57,53,0.22);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red); font-size: 0.95rem; flex-shrink: 0;
+    }
+    .feat-title { color: white; font-weight: 700; font-size: 0.88rem; }
+    .feat-desc { color: #777; font-size: 0.78rem; margin-top: 2px; }
+    .contact-card {
+      background: var(--red); border-radius: 16px; padding: 1.2rem;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .contact-card-title { color: white; font-weight: 800; font-size: 0.97rem; margin-bottom: 2px; }
+    .contact-item { color: rgba(255,255,255,0.9); font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+    .contact-item i { color: rgba(255,255,255,0.65); width: 15px; text-align: center; }
+    .whatsapp-big {
+      display: flex; align-items: center; gap: 9px;
+      background: rgba(0,0,0,0.2); border-radius: 10px; padding: 11px 14px;
+      color: white; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; margin-top: 3px;
+      transition: background 0.2s;
+    }
+    .whatsapp-big:hover { background: rgba(0,0,0,0.35); }
+    .whatsapp-big i { color: #25d366; font-size: 1.3rem; }
+    .mobile-bar {
+      display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+      background: var(--black); color: white;
+      padding: 10px 14px; z-index: 90;
+      border-top: 3px solid var(--red);
+      box-shadow: 0 -3px 14px rgba(0,0,0,0.5);
+      align-items: center; justify-content: space-between;
+    }
+    .mobile-bar-info { font-weight: 700; font-size: 0.95rem; }
+    .mobile-bar-info span { color: var(--red); }
+    .mobile-bar-btn {
+      background: var(--red); color: white; border: none;
+      padding: 8px 18px; border-radius: 60px;
+      font-weight: 800; font-size: 0.88rem; cursor: pointer;
+      font-family: 'Barlow', sans-serif;
+    }
+    .site-footer {
+      background: var(--black); color: #555; text-align: center;
+      padding: 1.6rem 1rem; border-top: 3px solid var(--red-dark);
+      font-size: 0.8rem;
+    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; color: white; letter-spacing: 2px; }
+    .footer-logo span { color: var(--red); }
+    .footer-sub { color: #444; font-size: 0.78rem; margin: 3px 0 9px; }
+    .footer-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .footer-links a { color: #666; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--red); }
+    .footer-links span { color: #333; }
+    .footer-copy { color: #333; font-size: 0.76rem; }
+    .footer-copy i { color: var(--red); }
+    @media (max-width: 900px) {
+      .about-inner { grid-template-columns: 1fr; gap: 1.6rem; }
+      .main-layout { flex-direction: column; }
+      .cart-col { flex: none; width: 100%; max-width: 100%; position: static; }
+    }
+    @media (max-width: 700px) {
+      .mobile-bar { display: flex; }
+      body { padding-bottom: 64px; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .sticky-filter { top: 60px; }
+    }
+    @media (max-width: 390px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER (mantido igual) -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-mark">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo EL SHADAI">
+          <defs>
+            <radialGradient id="logoGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff5252"/>
+              <stop offset="100%" stop-color="#7f0000"/>
+            </radialGradient>
+          </defs>
+          <path d="M40 6 L70 18 L70 44 C70 59 57 70 40 76 C23 70 10 59 10 44 L10 18 Z" fill="url(#logoGrad)"/>
+          <path d="M40 14 L62 24 L62 44 C62 55 53 64 40 69 C27 64 18 55 18 44 L18 24 Z" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <text x="40" y="50" font-family="Arial Black" font-weight="900" font-size="22" fill="white" text-anchor="middle">ES</text>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">EL SHADAI</div>
+        <div class="brand-tagline">Limpeza Automotiva &amp; Doméstica</div>
+        <div class="brand-contact"><i class="fas fa-map-pin"></i> União de Vila Nova &nbsp;<i class="fab fa-whatsapp"></i> (11) 91537-2486</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+      <button class="cart-btn" id="cartToggleBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-label">Pedido</span>
+        <span class="cart-badge" id="cartCount">0</span>
+        <span id="cartPreview">R$&nbsp;0,00</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Produtos de Alta Performance</div>
+    <h1 class="hero-title">LIMPEZA QUE<br>FAZ A <span>DIFERENÇA</span></h1>
+    <p class="hero-sub">Produtos profissionais para lavagem automotiva, detailing e limpeza doméstica. Atendimento pelo WhatsApp com entrega no bairro.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-th-large"></i> Ver Catálogo
+      </button>
+      <a href="https://wa.me/5511915372486" target="_blank" class="btn-outline">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+    <div class="hero-pills">
+      <span class="hero-pill-tag"><i class="fas fa-car"></i> Automotivo</span>
+      <span class="hero-pill-tag"><i class="fas fa-home"></i> Doméstico</span>
+      <span class="hero-pill-tag"><i class="fas fa-tools"></i> Acessórios</span>
+      <span class="hero-pill-tag"><i class="fas fa-truck"></i> Entrega local</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<div class="benefits-bar">
+  <div class="benefits-inner">
+    <div class="benefit-item"><i class="fas fa-truck"></i> Entrega no bairro</div>
+    <div class="benefit-item"><i class="fab fa-whatsapp"></i> Pedido pelo WhatsApp</div>
+    <div class="benefit-item"><i class="fas fa-award"></i> Produtos profissionais</div>
+    <div class="benefit-item"><i class="fas fa-tags"></i> Preço justo</div>
+    <div class="benefit-item"><i class="fas fa-bolt"></i> Atendimento rápido</div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="sticky-filter" id="catalogo">
+  <div class="filter-inner">
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Buscar... ex: Shampoo, Limpa Baú, 5 Litros" autocomplete="off">
+      <button id="clearSearchBtn" class="btn-cls hidden"><i class="fas fa-times"></i> Limpar</button>
+    </div>
+    <div class="cat-pills">
+      <button class="cat-pill active" data-cat="all"><i class="fas fa-th-large"></i> Todos</button>
+      <button class="cat-pill" data-cat="automotivo"><i class="fas fa-car"></i> Automotivo</button>
+      <button class="cat-pill" data-cat="domestica"><i class="fas fa-home"></i> Doméstica</button>
+      <button class="cat-pill" data-cat="acessorios"><i class="fas fa-tools"></i> Acessórios</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+  <section class="products-col" id="productsContainer"></section>
+
+  <aside class="cart-col" id="cartPanel">
+    <div class="cart-panel">
+      <div class="cart-top">
+        <h2><i class="fas fa-clipboard-list"></i> Seu Pedido</h2>
+        <button class="btn-clear-cart" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Limpar</button>
+      </div>
+      <div class="cart-body">
+        <div class="cart-items-list" id="cartItemsList">
+          <div class="cart-empty"><i class="fas fa-box-open"></i><p>Nenhum item ainda</p></div>
+        </div>
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-val" id="cartTotalValue">R$ 0,00</span>
+        </div>
+        <div class="client-inputs">
+          <input type="text" id="clientName" placeholder="Seu nome completo">
+          <input type="text" id="clientNeighborhood" placeholder="Bairro / Referência de entrega">
+        </div>
+        <button class="btn-whatsapp" id="whatsappBtn">
+          <i class="fab fa-whatsapp"></i> Finalizar no WhatsApp
+        </button>
+        <p class="cart-note"><i class="fas fa-phone"></i> (11) 91537-2486</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="sobre">
+  <div class="about-inner">
+    <div>
+      <div class="about-tag">Quem Somos</div>
+      <h2 class="about-title">PRODUTOS DE<br><span>QUALIDADE</span><br>NO SEU BAIRRO</h2>
+      <p class="about-text">A EL SHADAI oferece produtos profissionais de limpeza automotiva e doméstica com entrega direto no bairro. Trabalhamos com marcas de alto desempenho para atender tanto o lavador profissional quanto o uso doméstico no dia a dia.</p>
+      <div class="about-feats">
+        <div class="about-feat">
+          <div class="feat-icon"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <div class="feat-title">Qualidade Comprovada</div>
+            <div class="feat-desc">Produtos reconhecidos no mercado profissional de limpeza</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="feat-icon"><i class="fas fa-handshake"></i></div>
+          <div>
+            <div class="feat-title">Atendimento Direto</div>
+            <div class="feat-desc">Monte seu pedido aqui e envie pelo WhatsApp — simples e rápido</div>
+          </div>
+        </div>
+        <div class="about-feat">
+          <div class="feat-icon"><i class="fas fa-map-pin"></i></div>
+          <div>
+            <div class="feat-title">Entrega Local</div>
+            <div class="feat-desc">Atendemos União de Vila Nova e proximidades</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="contato">
+      <div class="contact-card">
+        <div class="contact-card-title">📍 Fale com a gente</div>
+        <div class="contact-item"><i class="fas fa-location-dot"></i> Travessa Rio Carantuva, 29 – União de Vila Nova</div>
+        <div class="contact-item"><i class="fab fa-whatsapp"></i> (11) 91537-2486</div>
+        <a href="https://wa.me/5511915372486" target="_blank" class="whatsapp-big">
+          <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE BAR -->
+<div class="mobile-bar" id="mobileBar">
+  <div class="mobile-bar-info">
+    <span id="mobileTotal">R$ 0,00</span> · <span id="mobileCount">0</span> itens
+  </div>
+  <button class="mobile-bar-btn" id="mobileViewCart"><i class="fas fa-cart-shopping"></i> Ver pedido</button>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-logo">EL <span>SHADAI</span></div>
+  <div class="footer-sub">Limpeza Automotiva &amp; Doméstica · União de Vila Nova</div>
+  <div class="footer-links">
+    <a href="#catalogo">Catálogo</a><span>·</span>
+    <a href="#sobre">Sobre</a><span>·</span>
+    <a href="https://wa.me/5511915372486" target="_blank">WhatsApp</a><span>·</span>
+    <a href="#contato">Contato</a>
+  </div>
+  <div class="footer-copy">© 2026 EL SHADAI · (11) 91537-2486 <i class="fas fa-heart"></i></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // Ajusta altura do header dinamicamente
+  const updateHeaderHeight = () => {
+    const header = document.querySelector('.app-header');
+    if (header) {
+      const height = header.offsetHeight;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+    }
+  };
+  window.addEventListener('resize', updateHeaderHeight);
+  updateHeaderHeight();
+
+  /* ── SVG LOGOS (com acessibilidade e IDs únicos) ── */
+  function svgBottle(productId, color, l1, l2, name) {
+    const gradId = `g-${productId}`;
+    return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <defs><linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${color}" stop-opacity="0.17"/>
+        <stop offset="100%" stop-color="${color}" stop-opacity="0.05"/>
+      </linearGradient></defs>
+      <rect width="100" height="120" fill="url(#${gradId})"/>
+      <rect x="37" y="10" width="26" height="10" rx="4" fill="${color}" opacity="0.68"/>
+      <rect x="28" y="20" width="44" height="75" rx="10" fill="${color}" opacity="0.8"/>
+      <rect x="35" y="28" width="30" height="52" rx="7" fill="white" opacity="0.11"/>
+      <rect x="38" y="30" width="9" height="35" rx="4" fill="white" opacity="0.16"/>
+      <rect x="30" y="47" width="40" height="27" rx="5" fill="white" opacity="0.92"/>
+      <text x="50" y="59" font-family="Arial Black" font-weight="900" font-size="9" fill="${color}" text-anchor="middle">${l1}</text>
+      <text x="50" y="70" font-family="Arial Black" font-weight="900" font-size="7.5" fill="${color}" text-anchor="middle" opacity="0.85">${l2}</text>
+    </svg>`;
+  }
+
+  function svgSpray(productId, color, label, name) {
+    return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="120" fill="${color}" fill-opacity="0.06"/>
+      <rect x="25" y="42" width="38" height="62" rx="10" fill="${color}" opacity="0.8"/>
+      <rect x="44" y="22" width="13" height="24" rx="4" fill="${color}" opacity="0.68"/>
+      <path d="M57 28 Q78 28 78 40 L78 52 L57 52" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="78" cy="28" r="4" fill="${color}"/>
+      <circle cx="86" cy="22" r="2" fill="${color}" opacity="0.45"/>
+      <circle cx="90" cy="17" r="1.5" fill="${color}" opacity="0.3"/>
+      <rect x="27" y="54" width="34" height="20" rx="5" fill="white" opacity="0.9"/>
+      <text x="44" y="68" font-family="Arial Black" font-weight="900" font-size="8.5" fill="${color}" text-anchor="middle">${label}</text>
+    </svg>`;
+  }
+
+  function svgBucket(productId, color, label, name) {
+    return `<svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="110" fill="${color}" fill-opacity="0.06"/>
+      <path d="M22 48 L27 94 L73 94 L78 48 Z" fill="${color}" opacity="0.76"/>
+      <rect x="20" y="42" width="60" height="10" rx="5" fill="${color}" opacity="0.86"/>
+      <path d="M30 42 Q50 20 70 42" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+      <rect x="28" y="60" width="44" height="22" rx="6" fill="white" opacity="0.9"/>
+      <text x="50" y="76" font-family="Arial Black" font-weight="900" font-size="10" fill="${color}" text-anchor="middle">${label}</text>
+    </svg>`;
+  }
+
+  function svgBlock(productId, color, label, name) {
+    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="100" fill="${color}" fill-opacity="0.06"/>
+      <rect x="14" y="32" width="72" height="40" rx="10" fill="${color}" opacity="0.8"/>
+      <rect x="14" y="32" width="72" height="13" rx="7" fill="${color}"/>
+      <text x="50" y="64" font-family="Arial Black" font-weight="900" font-size="10" fill="white" text-anchor="middle">${label}</text>
+    </svg>`;
+  }
+
+  function svgTrigger(productId, color, label, name) {
+    return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="120" fill="${color}" fill-opacity="0.06"/>
+      <rect x="30" y="52" width="32" height="52" rx="10" fill="${color}" opacity="0.78"/>
+      <rect x="32" y="30" width="12" height="26" rx="5" fill="${color}" opacity="0.66"/>
+      <path d="M44 36 Q68 36 68 48 L68 64 L44 64" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="68" cy="36" r="5" fill="${color}"/>
+      <rect x="32" y="64" width="28" height="17" rx="5" fill="white" opacity="0.9"/>
+      <text x="46" y="76" font-family="Arial Black" font-weight="900" font-size="8" fill="${color}" text-anchor="middle">${label}</text>
+    </svg>`;
+  }
+
+  function svgCloth(productId, color, name) {
+    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="100" fill="${color}" fill-opacity="0.06"/>
+      <rect x="10" y="26" width="80" height="52" rx="12" fill="${color}" opacity="0.76"/>
+      <line x1="10" y1="52" x2="90" y2="52" stroke="white" stroke-width="2" opacity="0.22"/>
+      <line x1="50" y1="26" x2="50" y2="78" stroke="white" stroke-width="2" opacity="0.22"/>
+      <text x="50" y="46" font-family="Arial Black" font-weight="900" font-size="11" fill="white" text-anchor="middle">MICRO</text>
+      <text x="50" y="62" font-family="Arial Black" font-weight="900" font-size="9" fill="white" text-anchor="middle" opacity="0.8">FIBRA</text>
+    </svg>`;
+  }
+
+  function svgGlove(productId, color, name) {
+    return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
+      <rect width="100" height="120" fill="${color}" fill-opacity="0.06"/>
+      <path d="M28 90 L28 52 Q28 32 50 32 Q72 32 72 52 L72 90 Q72 102 50 102 Q28 102 28 90Z" fill="${color}" opacity="0.76"/>
+      <rect x="35" y="16" width="12" height="30" rx="6" fill="${color}" opacity="0.62"/>
+      <rect x="52" y="13" width="12" height="28" rx="6" fill="${color}" opacity="0.62"/>
+      <text x="50" y="77" font-family="Arial Black" font-weight="900" font-size="11" fill="white" text-anchor="middle">LUVA</text>
+    </svg>`;
+  }
+
+  // Catálogo (igual, mas referenciando as funções corretas)
+  const products = [
+    { id:'limba-bau-1l',      name:'Limpa Baú',                            volume:'1 Litro',        price:8.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'limba-bau-5l',      name:'Limpa Baú',                            volume:'5 Litros',       price:28.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'fuan-varejo',       name:'Fuan Shampoo com Cera',                volume:'Varejo – 1 un.', price:6.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'fuan-5l',           name:'Fuan Shampoo com Cera',                volume:'5 Litros',       price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'maxfoam-1l',        name:'Max Foam – Shampoo Pré-Lavagem',       volume:'1 Litro',        price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'dx-varejo',         name:'DX Solupan',                           volume:'Varejo – 1 un.', price:6.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'dx-5l',             name:'DX Solupan',                           volume:'5 Litros',       price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'solupan-mano-2l',   name:'Solupan Mano Max Concentrado',         volume:'2 Litros',       price:35.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'higienizador-5l',   name:'Higienizador Concentrado',             volume:'5 Litros',       price:35.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'detail-500',        name:'Detail Clan – Higienizador APC',       volume:'500 ml',         price:18.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'detail-5l',         name:'Detail Clan – Higienizador APC',       volume:'5 Litros',       price:48.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'descont-ferroso',   name:'Descontaminante Ferroso Concentrado',  volume:'1 Unidade',      price:45.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    { id:'protex-1l',         name:'Protex – Verniz para Motor',           volume:'1 Litro',        price:11.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'protex-2l',         name:'Protex – Verniz para Motor',           volume:'2 Litros',       price:38.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'protex-5l',         name:'Protex – Verniz para Motor',           volume:'5 Litros',       price:55.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'create-1l',         name:'Create Green – Restaurador de Plástico', volume:'1 Litro',      price:14.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'create-5l',         name:'Create Green – Restaurador de Plástico', volume:'5 Litros',     price:70.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'dash-500g',         name:'Dash – Hidratante de Plástico Interno',volume:'500 g',          price:18.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'dash-25kg',         name:'Dash – Hidratante de Plástico Interno',volume:'2,5 Kg',         price:42.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'blue-500',          name:'Blue Shine – Pretinho de Pneu',        volume:'500 ml',         price:15.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'blue-5l',           name:'Blue Shine – Pretinho de Pneu',        volume:'5 Litros',       price:40.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'semi-2l',           name:'Semi Toque',                           volume:'2 Litros',       price:32.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'semi-5l',           name:'Semi Toque',                           volume:'5 Litros',       price:55.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'sine-500',          name:'Sine Resina Alto Brilho',              volume:'500 ml',         price:22.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'sine-1l',           name:'Sine Resina Alto Brilho',              volume:'1 Litro',        price:40.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
+    { id:'lavseco-1l',        name:'Lavagem a Seco',                       volume:'1 Litro',        price:40.00, category:'automotivo', subcat:'💦 Lavagem & Proteção' },
+    { id:'protetivo-5l',      name:'Protetivo Biodegradável',              volume:'5 Litros',       price:35.00, category:'automotivo', subcat:'💦 Lavagem & Proteção' },
+    { id:'offdrive-5l',       name:'Off Drive – Descontaminante de Borrachas', volume:'5 Litros',   price:55.00, category:'automotivo', subcat:'💦 Lavagem & Proteção' },
+    { id:'glass-5l',          name:'Glass – Limpa Vidro',                  volume:'5 Litros',       price:45.00, category:'automotivo', subcat:'🧴 Vidros' },
+    { id:'vision-250',        name:'Vision – Cristalizador de Vidros',     volume:'250 ml',         price:28.00, category:'automotivo', subcat:'🧴 Vidros' },
+    { id:'descarbon-5kg',     name:'Descarbonizante',                      volume:'5 Kg',           price:85.00, category:'automotivo', subcat:'🔧 Técnicos' },
+    { id:'abrilhantador-5l',  name:'Abrilhantador para Cabeçote',          volume:'5 Litros',       price:45.00, category:'automotivo', subcat:'🔧 Técnicos' },
+    { id:'clay-bar',          name:'Clay Bar SGT',                         volume:'1 Unidade',      price:25.00, category:'acessorios', subcat:'🧰 Equipamentos' },
+    { id:'pulverizador-sgt',  name:'Pulverizador SGT',                     volume:'1 Unidade',      price:50.00, category:'acessorios', subcat:'🧰 Equipamentos' },
+    { id:'pano-microfibra',   name:'Pano Microfibra Laser',                volume:'60×40 cm – 1 un.', price:18.00, category:'acessorios', subcat:'🧽 Panos & Escovas' },
+    { id:'luva-lavagem',      name:'Luva de Lavagem',                      volume:'1 Unidade',      price:15.00, category:'acessorios', subcat:'🧽 Panos & Escovas' },
+    { id:'alcool-5l',         name:'Álcool Perfumado',                     volume:'5 Litros',       price:25.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
+    { id:'amaciante-5l',      name:'Amaciante',                            volume:'5 Litros',       price:18.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
+    { id:'candida-5l',        name:'Cândida / Alvejante',                  volume:'5 Litros',       price:18.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
+    { id:'detergente-neutro-5l', name:'Detergente Neutro',                 volume:'5 Litros',       price:17.50, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
+    { id:'creolina-1l',       name:'Creolina',                             volume:'1 Litro',        price:10.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
+  ];
+
+  // Mapeamento dos logos
+  const LOGOS = {
+    'fuan-varejo':   (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
+    'fuan-5l':       (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
+    'maxfoam-1l':    (p) => svgBottle(p.id, '#1565c0','MAX','FOAM', p.name),
+    'dx-varejo':     (p) => svgBottle(p.id, '#0277bd','DX','SOLUPAN', p.name),
+    'dx-5l':         (p) => svgBottle(p.id, '#0277bd','DX','SOLUPAN', p.name),
+    'solupan-mano-2l':(p) => svgBottle(p.id, '#1a237e','MANO','MAX', p.name),
+    'higienizador-5l':(p) => svgBottle(p.id, '#00838f','HIGIEN.','CONC.', p.name),
+    'detail-500':    (p) => svgBottle(p.id, '#00695c','DETAIL','CLAN', p.name),
+    'detail-5l':     (p) => svgBottle(p.id, '#00695c','DETAIL','CLAN', p.name),
+    'descont-ferroso':(p) => svgBottle(p.id, '#bf360c','DESC.','FERR.', p.name),
+    'limba-bau-1l':  (p) => svgBottle(p.id, '#b71c1c','LIMPA','BAÚ', p.name),
+    'limba-bau-5l':  (p) => svgBottle(p.id, '#b71c1c','LIMPA','BAÚ', p.name),
+    'protex-5l':     (p) => svgBottle(p.id, '#6a1b9a','PROTEX','VERNIZ', p.name),
+    'protex-2l':     (p) => svgBottle(p.id, '#6a1b9a','PROTEX','VERNIZ', p.name),
+    'protex-1l':     (p) => svgBottle(p.id, '#6a1b9a','PROTEX','VERNIZ', p.name),
+    'create-5l':     (p) => svgBottle(p.id, '#2e7d32','CREATE','GREEN', p.name),
+    'create-1l':     (p) => svgBottle(p.id, '#2e7d32','CREATE','GREEN', p.name),
+    'dash-25kg':     (p) => svgBucket(p.id, '#4e342e','DASH', p.name),
+    'dash-500g':     (p) => svgBottle(p.id, '#4e342e','DASH','HID.', p.name),
+    'blue-5l':       (p) => svgBottle(p.id, '#263238','BLUE','SHINE', p.name),
+    'blue-500':      (p) => svgBottle(p.id, '#263238','BLUE','SHINE', p.name),
+    'semi-5l':       (p) => svgBottle(p.id, '#880e4f','SEMI','TOQUE', p.name),
+    'semi-2l':       (p) => svgBottle(p.id, '#880e4f','SEMI','TOQUE', p.name),
+    'sine-1l':       (p) => svgBottle(p.id, '#f57f17','SINE','RESINA', p.name),
+    'sine-500':      (p) => svgBottle(p.id, '#f57f17','SINE','RESINA', p.name),
+    'lavseco-1l':    (p) => svgSpray(p.id, '#455a64','LAV.SECO', p.name),
+    'protetivo-5l':  (p) => svgBottle(p.id, '#33691e','PROT.','BIO', p.name),
+    'offdrive-5l':   (p) => svgBottle(p.id, '#e65100','OFF','DRIVE', p.name),
+    'glass-5l':      (p) => svgSpray(p.id, '#0288d1','GLASS', p.name),
+    'vision-250':    (p) => svgSpray(p.id, '#1565c0','VISION', p.name),
+    'descarbon-5kg': (p) => svgBucket(p.id, '#212121','DESCARB.', p.name),
+    'abrilhantador-5l':(p) => svgBottle(p.id, '#f9a825','ABRIL.','CAB.', p.name),
+    'alcool-5l':     (p) => svgBottle(p.id, '#7b1fa2','ÁLCOOL','PERF.', p.name),
+    'amaciante-5l':  (p) => svgBottle(p.id, '#d81b60','AMACI','ANTE', p.name),
+    'candida-5l':    (p) => svgBottle(p.id, '#1565c0','CÂNDI','DA', p.name),
+    'detergente-neutro-5l':(p) => svgBottle(p.id, '#00897b','DET.','NEUTRO', p.name),
+    'creolina-1l':   (p) => svgBottle(p.id, '#4e342e','CREOL','INA', p.name),
+    'clay-bar':      (p) => svgBlock(p.id, '#37474f','CLAY BAR', p.name),
+    'pulverizador-sgt':(p) => svgTrigger(p.id, '#b71c1c','PULVER.', p.name),
+    'pano-microfibra':(p) => svgCloth(p.id, '#3949ab', p.name),
+    'luva-lavagem':  (p) => svgGlove(p.id, '#1b5e20', p.name),
+  };
+
+  const defaultLogo = (p) => svgBottle(p.id, '#888888', p.name.slice(0,4).toUpperCase(), '', p.name);
+
+  /* ── CART STATE ── */
+  const KEY = 'elShadai_v3';
+  let cart = [];
+  let currentCat = 'all';
+  let searchTerm = '';
+  function loadCart(){ try{ cart = JSON.parse(localStorage.getItem(KEY))||[]; }catch{ cart=[]; } }
+  function saveCart(){ try{ localStorage.setItem(KEY, JSON.stringify(cart)); }catch{} }
+  loadCart();
+
+  const productsEl  = document.getElementById('productsContainer');
+  const cartListEl  = document.getElementById('cartItemsList');
+  const cartCountEl = document.getElementById('cartCount');
+  const cartTotalEl = document.getElementById('cartTotalValue');
+  const cartPrevEl  = document.getElementById('cartPreview');
+  const mobTotEl    = document.getElementById('mobileTotal');
+  const mobCntEl    = document.getElementById('mobileCount');
+  const searchEl    = document.getElementById('searchInput');
+  const clearSEl    = document.getElementById('clearSearchBtn');
+
+  function fmt(n){ return 'R$ '+n.toFixed(2).replace('.',','); }
+
+  function getFiltered(){
+    let list = products.filter(p => currentCat==='all' || p.category===currentCat);
+    if(searchTerm.trim()){
+      const t = searchTerm.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(t) || p.volume.toLowerCase().includes(t) || p.subcat.toLowerCase().includes(t));
+    }
+    return list;
+  }
+
+  function renderProducts(){
+    const filtered = getFiltered();
+    if(!filtered.length){ productsEl.innerHTML=`<div class="no-products">🔍 Nenhum produto encontrado.</div>`; return; }
+    const grouped = {};
+    filtered.forEach(p => { (grouped[p.subcat]=grouped[p.subcat]||[]).push(p); });
+    const fragment = document.createDocumentFragment();
+    for(const sub in grouped){
+      const subHeader = document.createElement('div');
+      subHeader.className = 'subcat-header';
+      subHeader.innerHTML = `<div class="subcat-line"></div><div class="subcat-badge">${sub}</div><div class="subcat-line"></div>`;
+      fragment.appendChild(subHeader);
+      const grid = document.createElement('div');
+      grid.className = 'product-grid';
+      grouped[sub].forEach(p => {
+        const logoFunc = LOGOS[p.id] || defaultLogo;
+        const logo = logoFunc(p);
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img-wrap">${logo}</div>
+          <div class="product-name">${p.name}</div>
+          <span class="product-volume">${p.volume}</span>
+          <div class="product-price">R$&nbsp;${p.price.toFixed(2).replace('.',',')}</div>
+          <button class="btn-add" data-id="${p.id}" data-name="${p.name}" data-volume="${p.volume}" data-price="${p.price}">
+            <i class="fas fa-plus-circle"></i> Adicionar
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+      fragment.appendChild(grid);
+    }
+    productsEl.innerHTML = '';
+    productsEl.appendChild(fragment);
+  }
+
+  function updateCartUI(){
+    const qty   = cart.reduce((s,i)=>s+i.quantity,0);
+    const total = cart.reduce((s,i)=>s+i.price*i.quantity,0);
+    cartCountEl.textContent = qty;
+    cartTotalEl.textContent = fmt(total);
+    cartPrevEl.textContent  = fmt(total);
+    mobTotEl.textContent    = fmt(total);
+    mobCntEl.textContent    = qty;
+    if(!cart.length){
+      cartListEl.innerHTML=`<div class="cart-empty"><i class="fas fa-box-open"></i><p>Nenhum item ainda</p></div>`;
+      saveCart(); return;
+    }
+    cartListEl.innerHTML = cart.map(item=>`
+      <div class="cart-item">
+        <div class="ci-info">
+          <div class="ci-name">${item.name}</div>
+          <div class="ci-vol">${item.volume}</div>
+          <div class="ci-controls">
+            <button class="ci-btn ci-dec" data-id="${item.id}">−</button>
+            <span class="ci-qty">${item.quantity}</span>
+            <button class="ci-btn ci-inc" data-id="${item.id}">+</button>
+            <button class="ci-del ci-rem" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="ci-price">${fmt(item.price*item.quantity)}</div>
+      </div>`).join('');
+    saveCart();
+  }
+
+  // Timeout único para cada botão
+  const addTimeouts = new Map();
+  productsEl.addEventListener('click', e=>{
+    const btn = e.target.closest('.btn-add');
+    if(!btn) return;
+    const {id,name,volume,price} = btn.dataset;
+    const ex = cart.find(i=>i.id===id);
+    ex ? ex.quantity++ : cart.push({id,name,volume,price:parseFloat(price),quantity:1});
+    updateCartUI();
+
+    // Limpa timeout anterior
+    if (addTimeouts.has(btn)) clearTimeout(addTimeouts.get(btn));
+    btn.classList.add('added');
+    btn.innerHTML='<i class="fas fa-check"></i> Adicionado!';
+    const tid = setTimeout(()=>{
+      btn.classList.remove('added');
+      btn.innerHTML='<i class="fas fa-plus-circle"></i> Adicionar';
+      addTimeouts.delete(btn);
+    }, 700);
+    addTimeouts.set(btn, tid);
+  });
+
+  cartListEl.addEventListener('click', e=>{
+    const inc=e.target.closest('.ci-inc'), dec=e.target.closest('.ci-dec'), rem=e.target.closest('.ci-rem');
+    if(inc){ const it=cart.find(i=>i.id===inc.dataset.id); if(it){ it.quantity++; updateCartUI(); } }
+    else if(dec){ const it=cart.find(i=>i.id===dec.dataset.id); if(it){ if(--it.quantity<=0) cart=cart.filter(i=>i.id!==dec.dataset.id); updateCartUI(); } }
+    else if(rem){ cart=cart.filter(i=>i.id!==rem.dataset.id); updateCartUI(); }
+  });
+
+  document.getElementById('clearCartBtn').addEventListener('click',()=>{
+    if(cart.length && confirm('Limpar todos os itens do pedido?')) { cart=[]; updateCartUI(); }
+  });
+
+  document.getElementById('whatsappBtn').addEventListener('click',()=>{
+    if(!cart.length){ alert('Adicione produtos ao pedido primeiro.'); return; }
+    const name   = document.getElementById('clientName').value.trim();
+    const bairro = document.getElementById('clientNeighborhood').value.trim();
+    if(!name) { alert('Por favor, informe seu nome para o pedido.'); return; }
+    let txt = `🛒 *NOVO PEDIDO – EL SHADAI*\n`;
+    txt += `👤 *Cliente:* ${name}\n`;
+    if(bairro) txt += `📍 *Bairro/Ref:* ${bairro}\n`;
+    txt += `\n📋 *Itens:*\n`;
+    let total = 0;
+    cart.forEach(i=>{ const s=i.price*i.quantity; total+=s; txt+=`✅ ${i.quantity}× ${i.name} — ${i.volume} — ${fmt(s)}\n`; });
+    txt += `\n💰 *TOTAL: ${fmt(total)}*\n⏳ Aguardando confirmação. Obrigado!`;
+    window.open(`https://wa.me/5511915372486?text=${encodeURIComponent(txt)}`,'_blank');
+  });
+
+  document.querySelectorAll('.cat-pill').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      currentCat = btn.dataset.cat;
+      document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    });
+  });
+
+  // Debounce na pesquisa
+  let searchTimeout;
+  searchEl.addEventListener('input',()=>{
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(()=>{
+      searchTerm = searchEl.value;
+      renderProducts();
+      clearSEl.classList.toggle('hidden',!searchTerm.trim());
+    }, 150);
+  });
+  clearSEl.addEventListener('click',()=>{ searchEl.value=''; searchTerm=''; renderProducts(); clearSEl.classList.add('hidden'); });
+
+  [document.getElementById('cartToggleBtn'), document.getElementById('mobileViewCart')].forEach(btn=>{
+    btn?.addEventListener('click',()=>document.getElementById('cartPanel').scrollIntoView({behavior:'smooth'}));
+  });
+
+  renderProducts();
+  updateCartUI();
+})();
+</script>
+</body>
+</html>
