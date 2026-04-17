@@ -459,12 +459,12 @@
 </head>
 <body>
 
-<!-- HEADER (mantido igual) -->
+<!-- HEADER (com nome atualizado) -->
 <header class="app-header">
   <div class="header-inner">
     <div class="logo-area">
       <div class="logo-mark">
-        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo EL SHADAI">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo ERG EL SHADAI">
           <defs>
             <radialGradient id="logoGrad" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stop-color="#ff5252"/>
@@ -477,7 +477,7 @@
         </svg>
       </div>
       <div>
-        <div class="brand-name">EL SHADAI</div>
+        <div class="brand-name">ERG EL SHADAI</div>
         <div class="brand-tagline">Limpeza Automotiva &amp; Doméstica</div>
         <div class="brand-contact"><i class="fas fa-map-pin"></i> União de Vila Nova &nbsp;<i class="fab fa-whatsapp"></i> (11) 91537-2486</div>
       </div>
@@ -580,13 +580,13 @@
   </aside>
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT (texto atualizado) -->
 <section class="about-section" id="sobre">
   <div class="about-inner">
     <div>
       <div class="about-tag">Quem Somos</div>
       <h2 class="about-title">PRODUTOS DE<br><span>QUALIDADE</span><br>NO SEU BAIRRO</h2>
-      <p class="about-text">A EL SHADAI oferece produtos profissionais de limpeza automotiva e doméstica com entrega direto no bairro. Trabalhamos com marcas de alto desempenho para atender tanto o lavador profissional quanto o uso doméstico no dia a dia.</p>
+      <p class="about-text">A ERG EL SHADAI oferece produtos profissionais de limpeza automotiva e doméstica com entrega direto no bairro. Trabalhamos com marcas de alto desempenho para atender tanto o lavador profissional quanto o uso doméstico no dia a dia.</p>
       <div class="about-feats">
         <div class="about-feat">
           <div class="feat-icon"><i class="fas fa-shield-halved"></i></div>
@@ -632,9 +632,9 @@
   <button class="mobile-bar-btn" id="mobileViewCart"><i class="fas fa-cart-shopping"></i> Ver pedido</button>
 </div>
 
-<!-- FOOTER -->
+<!-- FOOTER (nome atualizado) -->
 <footer class="site-footer">
-  <div class="footer-logo">EL <span>SHADAI</span></div>
+  <div class="footer-logo">ERG <span>EL SHADAI</span></div>
   <div class="footer-sub">Limpeza Automotiva &amp; Doméstica · União de Vila Nova</div>
   <div class="footer-links">
     <a href="#catalogo">Catálogo</a><span>·</span>
@@ -642,7 +642,7 @@
     <a href="https://wa.me/5511915372486" target="_blank">WhatsApp</a><span>·</span>
     <a href="#contato">Contato</a>
   </div>
-  <div class="footer-copy">© 2026 EL SHADAI · (11) 91537-2486 <i class="fas fa-heart"></i></div>
+  <div class="footer-copy">© 2026 ERG EL SHADAI · (11) 91537-2486 <i class="fas fa-heart"></i></div>
 </footer>
 
 <script>
@@ -746,7 +746,7 @@
     </svg>`;
   }
 
-  // Catálogo (igual, mas referenciando as funções corretas)
+  // Catálogo (mantido igual)
   const products = [
     { id:'limba-bau-1l',      name:'Limpa Baú',                            volume:'1 Litro',        price:8.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
     { id:'limba-bau-5l',      name:'Limpa Baú',                            volume:'5 Litros',       price:28.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
@@ -791,7 +791,7 @@
     { id:'creolina-1l',       name:'Creolina',                             volume:'1 Litro',        price:10.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
   ];
 
-  // Mapeamento dos logos
+  // Mapeamento dos logos (idêntico)
   const LOGOS = {
     'fuan-varejo':   (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
     'fuan-5l':       (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
@@ -942,7 +942,6 @@
     ex ? ex.quantity++ : cart.push({id,name,volume,price:parseFloat(price),quantity:1});
     updateCartUI();
 
-    // Limpa timeout anterior
     if (addTimeouts.has(btn)) clearTimeout(addTimeouts.get(btn));
     btn.classList.add('added');
     btn.innerHTML='<i class="fas fa-check"></i> Adicionado!';
@@ -970,7 +969,7 @@
     const name   = document.getElementById('clientName').value.trim();
     const bairro = document.getElementById('clientNeighborhood').value.trim();
     if(!name) { alert('Por favor, informe seu nome para o pedido.'); return; }
-    let txt = `🛒 *NOVO PEDIDO –ERG EL SHADAI*\n`;
+    let txt = `🛒 *NOVO PEDIDO – ERG EL SHADAI*\n`;
     txt += `👤 *Cliente:* ${name}\n`;
     if(bairro) txt += `📍 *Bairro/Ref:* ${bairro}\n`;
     txt += `\n📋 *Itens:*\n`;
@@ -989,7 +988,6 @@
     });
   });
 
-  // Debounce na pesquisa
   let searchTimeout;
   searchEl.addEventListener('input',()=>{
     clearTimeout(searchTimeout);
