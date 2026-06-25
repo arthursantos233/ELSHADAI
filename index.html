@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <!-- SEO & Metadados -->
   <meta name="description" content="ERG EL SHADAI - Produtos profissionais de limpeza automotiva e doméstica com entrega em União de Vila Nova. Peça pelo WhatsApp.">
   <meta property="og:title" content="ERG EL SHADAI · Limpeza Automotiva & Doméstica">
   <meta property="og:description" content="Shampoos, acabamentos, acessórios e produtos domésticos de alta performance.">
@@ -11,12 +10,11 @@
   <meta property="og:locale" content="pt_BR">
   <meta name="theme-color" content="#e53935">
   <title>ERG EL SHADAI · Limpeza Automotiva & Doméstica</title>
-  <!-- Favicon (simples) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e53935' rx='20'/><text x='50' y='70' font-family='Arial Black' font-size='50' fill='white' text-anchor='middle'>ES</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* Mantido exatamente o mesmo CSS original (apenas ajuste no sticky top) */
+    /* CSS original mantido integralmente */
     :root {
       --red: #e53935;
       --red-dark: #b71c1c;
@@ -24,7 +22,7 @@
       --black: #0a0a0a;
       --black-soft: #141414;
       --surface: #f7f0f0;
-      --header-height: 66px; /* será atualizado via JS */
+      --header-height: 66px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -459,7 +457,6 @@
 </head>
 <body>
 
-<!-- HEADER (com nome atualizado) -->
 <header class="app-header">
   <div class="header-inner">
     <div class="logo-area">
@@ -498,7 +495,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Produtos de Alta Performance</div>
@@ -521,7 +517,6 @@
   </div>
 </section>
 
-<!-- BENEFITS -->
 <div class="benefits-bar">
   <div class="benefits-inner">
     <div class="benefit-item"><i class="fas fa-truck"></i> Entrega no bairro</div>
@@ -532,7 +527,7 @@
   </div>
 </div>
 
-<!-- FILTER -->
+<!-- FILTER (com botão Limpeza e Higienização) -->
 <div class="sticky-filter" id="catalogo">
   <div class="filter-inner">
     <div class="search-wrap">
@@ -545,11 +540,11 @@
       <button class="cat-pill" data-cat="automotivo"><i class="fas fa-car"></i> Automotivo</button>
       <button class="cat-pill" data-cat="domestica"><i class="fas fa-home"></i> Doméstica</button>
       <button class="cat-pill" data-cat="acessorios"><i class="fas fa-tools"></i> Acessórios</button>
+      <button class="cat-pill" data-cat="limpeza-higienizacao"><i class="fas fa-spray-can-sparkles"></i> Limpeza e Higienização</button>
     </div>
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main-layout">
   <section class="products-col" id="productsContainer"></section>
 
@@ -580,7 +575,6 @@
   </aside>
 </div>
 
-<!-- ABOUT (texto atualizado) -->
 <section class="about-section" id="sobre">
   <div class="about-inner">
     <div>
@@ -624,7 +618,6 @@
   </div>
 </section>
 
-<!-- MOBILE BAR -->
 <div class="mobile-bar" id="mobileBar">
   <div class="mobile-bar-info">
     <span id="mobileTotal">R$ 0,00</span> · <span id="mobileCount">0</span> itens
@@ -632,7 +625,6 @@
   <button class="mobile-bar-btn" id="mobileViewCart"><i class="fas fa-cart-shopping"></i> Ver pedido</button>
 </div>
 
-<!-- FOOTER (nome atualizado) -->
 <footer class="site-footer">
   <div class="footer-logo">ERG <span>EL SHADAI</span></div>
   <div class="footer-sub">Limpeza Automotiva &amp; Doméstica · União de Vila Nova</div>
@@ -649,7 +641,6 @@
 (function(){
   "use strict";
 
-  // Ajusta altura do header dinamicamente
   const updateHeaderHeight = () => {
     const header = document.querySelector('.app-header');
     if (header) {
@@ -660,7 +651,7 @@
   window.addEventListener('resize', updateHeaderHeight);
   updateHeaderHeight();
 
-  /* ── SVG LOGOS (com acessibilidade e IDs únicos) ── */
+  /* ── SVG LOGOS ── */
   function svgBottle(productId, color, l1, l2, name) {
     const gradId = `g-${productId}`;
     return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${name}">
@@ -746,20 +737,23 @@
     </svg>`;
   }
 
-  // Catálogo (mantido igual)
+  // ========== PRODUTOS ATUALIZADOS ==========
   const products = [
-    { id:'limba-bau-1l',      name:'Limpa Baú',                            volume:'1 Litro',        price:8.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'limba-bau-5l',      name:'Limpa Baú',                            volume:'5 Litros',       price:28.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'fuan-varejo',       name:'Fuan Shampoo com Cera',                volume:'Varejo – 1 un.', price:6.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'fuan-5l',           name:'Fuan Shampoo com Cera',                volume:'5 Litros',       price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'maxfoam-1l',        name:'Max Foam – Shampoo Pré-Lavagem',       volume:'1 Litro',        price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'dx-varejo',         name:'DX Solupan',                           volume:'Varejo – 1 un.', price:6.00,  category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'dx-5l',             name:'DX Solupan',                           volume:'5 Litros',       price:25.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'solupan-mano-2l',   name:'Solupan Mano Max Concentrado',         volume:'2 Litros',       price:35.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'higienizador-5l',   name:'Higienizador Concentrado',             volume:'5 Litros',       price:35.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'detail-500',        name:'Detail Clan – Higienizador APC',       volume:'500 ml',         price:18.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'detail-5l',         name:'Detail Clan – Higienizador APC',       volume:'5 Litros',       price:48.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
-    { id:'descont-ferroso',   name:'Descontaminante Ferroso Concentrado',  volume:'1 Unidade',      price:45.00, category:'automotivo', subcat:'🧽 Limpeza & Higienização' },
+    // LIMPEZA E HIGIENIZAÇÃO (12 itens transferidos do automotivo)
+    { id:'limba-bau-1l',      name:'Limpa Baú',                            volume:'1 Litro',        price:8.00,  category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'limba-bau-5l',      name:'Limpa Baú',                            volume:'5 Litros',       price:28.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'fuan-varejo',       name:'Fuan Shampoo com Cera',                volume:'Varejo – 1 un.', price:6.00,  category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'fuan-5l',           name:'Fuan Shampoo com Cera',                volume:'5 Litros',       price:25.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'maxfoam-1l',        name:'Max Foam – Shampoo Pré-Lavagem',       volume:'1 Litro',        price:25.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'dx-varejo',         name:'DX Solupan',                           volume:'Varejo – 1 un.', price:6.00,  category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'dx-5l',             name:'DX Solupan',                           volume:'5 Litros',       price:25.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'solupan-mano-2l',   name:'Solupan Mano Max Concentrado',         volume:'2 Litros',       price:35.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'higienizador-5l',   name:'Higienizador Concentrado',             volume:'5 Litros',       price:35.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'detail-500',        name:'Detail Clan – Higienizador APC',       volume:'500 ml',         price:18.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'detail-5l',         name:'Detail Clan – Higienizador APC',       volume:'5 Litros',       price:48.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+    { id:'descont-ferroso',   name:'Descontaminante Ferroso Concentrado',  volume:'1 Unidade',      price:45.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
+
+    // AUTOMOTIVO (apenas acabamento e estética)
     { id:'protex-1l',         name:'Protex – Verniz para Motor',           volume:'1 Litro',        price:11.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
     { id:'protex-2l',         name:'Protex – Verniz para Motor',           volume:'2 Litros',       price:38.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
     { id:'protex-5l',         name:'Protex – Verniz para Motor',           volume:'5 Litros',       price:55.00, category:'automotivo', subcat:'✨ Acabamento & Estética' },
@@ -780,10 +774,14 @@
     { id:'vision-250',        name:'Vision – Cristalizador de Vidros',     volume:'250 ml',         price:28.00, category:'automotivo', subcat:'🧴 Vidros' },
     { id:'descarbon-5kg',     name:'Descarbonizante',                      volume:'5 Kg',           price:85.00, category:'automotivo', subcat:'🔧 Técnicos' },
     { id:'abrilhantador-5l',  name:'Abrilhantador para Cabeçote',          volume:'5 Litros',       price:45.00, category:'automotivo', subcat:'🔧 Técnicos' },
+
+    // ACESSÓRIOS
     { id:'clay-bar',          name:'Clay Bar SGT',                         volume:'1 Unidade',      price:25.00, category:'acessorios', subcat:'🧰 Equipamentos' },
     { id:'pulverizador-sgt',  name:'Pulverizador SGT',                     volume:'1 Unidade',      price:50.00, category:'acessorios', subcat:'🧰 Equipamentos' },
     { id:'pano-microfibra',   name:'Pano Microfibra Laser',                volume:'60×40 cm – 1 un.', price:18.00, category:'acessorios', subcat:'🧽 Panos & Escovas' },
     { id:'luva-lavagem',      name:'Luva de Lavagem',                      volume:'1 Unidade',      price:15.00, category:'acessorios', subcat:'🧽 Panos & Escovas' },
+
+    // DOMÉSTICA
     { id:'alcool-5l',         name:'Álcool Perfumado',                     volume:'5 Litros',       price:25.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'amaciante-5l',      name:'Amaciante',                            volume:'5 Litros',       price:18.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'candida-5l',        name:'Cândida / Alvejante',                  volume:'5 Litros',       price:18.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
@@ -791,7 +789,7 @@
     { id:'creolina-1l',       name:'Creolina',                             volume:'1 Litro',        price:10.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
   ];
 
-  // Mapeamento dos logos (idêntico)
+  // Mapeamento de logos (sem os antigos serviços)
   const LOGOS = {
     'fuan-varejo':   (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
     'fuan-5l':       (p) => svgBottle(p.id, '#e53935','FUAN','SHAMPOO', p.name),
@@ -932,7 +930,6 @@
     saveCart();
   }
 
-  // Timeout único para cada botão
   const addTimeouts = new Map();
   productsEl.addEventListener('click', e=>{
     const btn = e.target.closest('.btn-add');
