@@ -178,7 +178,7 @@
       flex: 1; min-width: 150px;
       display: flex; align-items: center;
       background: #f5f5f5; border: 2px solid #e0e0e0; border-radius: 60px;
-      padding: 0.15rem 0.9rem; /* removido o padding extra para o botão */
+      padding: 0.15rem 0.9rem;
       transition: border-color 0.2s;
     }
     .search-wrap:focus-within { border-color: var(--red); }
@@ -188,7 +188,6 @@
       padding: 7px 7px; font-size: 0.88rem;
       background: transparent; font-family: 'Barlow', sans-serif;
     }
-    /* removido .btn-cls */
     .cat-pills {
       display: flex; gap: 6px; overflow-x: auto;
       scrollbar-width: none; padding-bottom: 1px;
@@ -525,7 +524,6 @@
     <div class="search-wrap">
       <i class="fas fa-search"></i>
       <input type="text" id="searchInput" placeholder="Buscar... ex: Shampoo, Limpa Baú, 5 Litros" autocomplete="off">
-      <!-- Botão "Limpar" da busca removido permanentemente -->
     </div>
     <div class="cat-pills">
       <button class="cat-pill active" data-cat="all"><i class="fas fa-th-large"></i> Todos</button>
@@ -729,7 +727,7 @@
     </svg>`;
   }
 
-  // Produtos (lista completa)
+  // Produtos (incluindo Desinfetante)
   const products = [
     { id:'limba-bau-1l',      name:'Limpa Baú',                            volume:'1 Litro',        price:8.00,  category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
     { id:'limba-bau-5l',      name:'Limpa Baú',                            volume:'5 Litros',       price:28.00, category:'limpeza-higienizacao', subcat:'🧽 Limpeza & Higienização' },
@@ -772,6 +770,7 @@
     { id:'candida-5l',        name:'Cândida / Alvejante',                  volume:'5 Litros',       price:18.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'cloro-500ml',       name:'Cloro Líquido',                        volume:'Frasco 500 ml (rende até 18 litros)', price:25.00, category:'domestica', subcat:'🏠 Limpeza Doméstica' },
     { id:'concentrado-desinfetante-5l', name:'Concentrado de Desinfetante (Veja)', volume:'5 Litros', price:17.50, category:'domestica', subcat:'🏠 Limpeza Doméstica' },
+    { id:'desinfetante-1l',   name:'Desinfetante',                         volume:'1 Litro',        price:4.00,  category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'detergente-neutro-5l', name:'Detergente Neutro',                 volume:'5 Litros',       price:17.50, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'detergente-coco-5l', name:'Detergente de Coco',                  volume:'5 Litros',       price:28.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
     { id:'limpa-aluminio-5l', name:'Limpa Alumínio',                       volume:'5 Litros',       price:28.00, category:'domestica',  subcat:'🏠 Limpeza Doméstica' },
@@ -830,6 +829,7 @@
     'luva-lavagem':  (p) => svgGlove(p.id, '#1b5e20', p.name),
     'cloro-500ml': (p) => svgBottle(p.id, '#00acc1','CLORO','LÍQ.', p.name),
     'concentrado-desinfetante-5l': (p) => svgBottle(p.id, '#7cb342','DESINF.','CONC.', p.name),
+    'desinfetante-1l': (p) => svgBottle(p.id, '#43a047','DESIN','FET.', p.name),
     'detergente-coco-5l': (p) => svgBottle(p.id, '#8d6e63','DET.','COCO', p.name),
     'limpa-aluminio-5l': (p) => svgSpray(p.id, '#78909c','LIMP.','ALUM.', p.name),
     'limpa-pedra-5l': (p) => svgBottle(p.id, '#6d4c41','LIMP.','PEDRA', p.name),
@@ -938,7 +938,6 @@
     saveCart();
   }
 
-  // Eventos delegados
   document.addEventListener('click', e => {
     const btn = e.target.closest('.btn-add');
     if(btn){
@@ -973,7 +972,6 @@
     }
   });
 
-  // Limpar carrinho (botão no topo)
   const clearCartBtn = document.getElementById('clearCartBtn');
   if(clearCartBtn){
     clearCartBtn.addEventListener('click', ()=>{
@@ -984,7 +982,6 @@
     });
   }
 
-  // Finalizar WhatsApp
   const whatsappBtn = document.getElementById('whatsappBtn');
   if(whatsappBtn){
     whatsappBtn.addEventListener('click', ()=>{
@@ -1003,7 +1000,6 @@
     });
   }
 
-  // Filtros
   document.querySelectorAll('.cat-pill').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       currentCat = btn.dataset.cat;
@@ -1013,7 +1009,6 @@
     });
   });
 
-  // Busca (sem botão de limpar)
   let searchTimeout;
   searchEl.addEventListener('input', ()=>{
     clearTimeout(searchTimeout);
@@ -1023,7 +1018,6 @@
     }, 150);
   });
 
-  // Navegação para o carrinho
   const cartToggleBtn = document.getElementById('cartToggleBtn');
   const mobileViewCartBtn = document.getElementById('mobileViewCart');
   if(cartToggleBtn){
